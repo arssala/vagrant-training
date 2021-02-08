@@ -89,7 +89,8 @@ source ~/.bashrc
 ```
 Lorsque cela sera terminé, nous utiliserons gem pour installer Jekyll lui-même ainsi que Bundler, qui gère les dépendances Gem:
 ```
-gem install jekyll bundler
+gem install jekyll -v 3.7.3
+gem install bundler
 ```
 
 Lorsque l'installation est terminée, vous pouvez vérifier que Jekyll est disponible sur votre système invité:
