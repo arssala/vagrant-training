@@ -14,7 +14,7 @@ Lorsque vous avez besoin pour produire un nouveau box, la meilleure solution est
 
 Si vous voulez préparer un environnement développement à base Ubuntu, vous pouvez choisir l'un des boxes pris en charge par Ubuntu:
 
-• ubuntu/trusty64          
+• ubuntu/xenial64          
 • ubuntu/xenial64          
 • ubuntu/precise32          
 • ubuntu/precise64          

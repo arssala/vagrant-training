@@ -36,7 +36,7 @@ machine virtuelle Linux.
 
 ## Vagrantfile
 
-Nous utilisons **Vagrantfile **pour configurer Vagrant
+Nous utilisons **Vagrantfile** pour configurer Vagrant
 
 1.  Marquer le répertoire racine de notre projet. Une grande partie de
     la configuration de Vagrant est relative à ce répertoire racine.
@@ -93,37 +93,30 @@ Nous allons choisir quelques boxes que nous voulons installer. Accédez à
 
 Pour l'ajouter à notre liste de boxes.
 ```
-$ vagrant box add ubuntu/trusty64
-
-==> box: Loading metadata for box 'ubuntu/trusty64'
-
-box: URL: https://atlas.hashicorp.com/ubuntu/trusty64
-
-==> box: Adding box 'ubuntu/trusty64' (v20170202.0.0) for provider:
-virtualbox
-
-box: Downloading:
-https://atlas.hashicorp.com/ubuntu/boxes/trusty64/versions/20170202.0.0/providers/virtualbox.box
-
-==> box: Successfully added box 'ubuntu/trusty64' (v20170202.0.0) for
-'virtualbox'!
+$ vagrant box add ubuntu/xenial64
+==> box: Loading metadata for box 'ubuntu/xenial64'
+    box: URL: https://vagrantcloud.com/ubuntu/xenial64
+==> box: Adding box 'ubuntu/xenial64' (v20210203.0.0) for provider: virtualbox
+    box: Downloading: https://vagrantcloud.com/ubuntu/boxes/xenial64/versions/20210203.0.0/providers/virtualbox.box
+Download redirected to host: cloud-images.ubuntu.com
+==> box: Successfully added box 'ubuntu/xenial64' (v20210203.0.0) for 'virtualbox'!
 ```
 Il télécharge simplement l'image mais n'installe rien sur notre système.
 
-Notez que nous avons téléchargé le box nommé 'ubuntu/trusty64'
+Notez que nous avons téléchargé le box nommé 'ubuntu/xenial64'
 du catalogue de [HashiCorp](https://app.vagrantup.com),
 un endroit où nous pouvons trouver et héberger des boxes. 
 
-Notez également que les boxes sont espacées de noms. Les boxes sont
-divisées en deux parties - le nom d'utilisateur et le nom de le box -
-séparées par une barre oblique. Dans l'exemple ci-dessus, le nom
-d'utilisateur est "ubuntu" et le box est "trusty64".
+Notez également que les boxes sont namespaced. Les boxes sont
+divisées en deux parties - le nom d'utilisateur et le nom du box -
+séparées par un slash (/). Dans l'exemple ci-dessus, le nom
+d'utilisateur est "ubuntu" et le box est "xenial64".
 
 Nous pouvons vérifier quels boxes nous avons:
 ```
 $ vagrant box list
 
-ubuntu/trusty64 (virtualbox, 20170202.0.0)
+ubuntu/xenial64 (virtualbox, 20210203.0.0)
 ```
 On souhaite parfois savoir quels boxes
 sont stockés **globalement** pour l'utilisateur actuel.  
@@ -133,13 +126,13 @@ la commande **vagrant box add**. Comme cela sera décrit dans la
 section suivante, si nous **spécifions** quel box utiliser
 dans **Vagrantfile**, Vagrant le téléchargera.   
 
-Maintenant, nous pouvons créer autant de boxes 'ubuntu/trusty64' que
+Maintenant, nous pouvons créer autant de boxes 'ubuntu/xenial64' que
 nous le voulons tant que notre machine peut le gérer.
 
 Les boxes ajoutés peuvent être réutilisés par plusieurs projets. Chaque
 projet utilise un box comme image initiale à partir de laquelle cloner
 et ne modifie jamais l'image de base réelle. Cela signifie que si nous
-avons deux projets utilisant tous les deux le box 'ubuntu/trusty64' que
+avons deux projets utilisant tous les deux le box 'ubuntu/xenial64' que
 nous venons d'ajouter, l'ajout de fichiers dans une machine invitée
 n'aura aucun effet sur l'autre machine.
 
@@ -151,13 +144,13 @@ modifiez le contenu comme suit:  
 ```
 Vagrant.configure(2) do |config|
 
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "ubuntu/xenial64"
 
 end
 ```
-Le **"ubuntu/trusty64"** dans ce cas doit correspondre au nom que nous
+Le **"ubuntu/xenial64"** dans ce cas doit correspondre au nom que nous
 avons utilisé pour ajouter le box ci-dessus. C'est ainsi que Vagrant
-sait quelle box utiliser. Si le box n'a pas été ajoutée auparavant,
+sait quel box utiliser. Si le box n'a pas été ajoutée auparavant,
 Vagrant téléchargera et ajoutera automatiquement le box lors de son
 exécution.
 
@@ -168,9 +161,9 @@ ce qui suit:
 ```
 $ vagrant up
 Bringing machine 'default' up with 'virtualbox' provider...
-==> default: Importing base box 'ubuntu/trusty64'...
+==> default: Importing base box 'ubuntu/xenial64'...
 ==> default: Matching MAC address for NAT networking...
-==> default: Checking if box 'ubuntu/trusty64' is up to date...
+==> default: Checking if box 'ubuntu/xenial64' is up to date...
 ==> default: Setting the name of the VM:
 my_vagrant_default_1486540487227_74029
 ==> default: Clearing any previously set forwarded ports...
@@ -200,26 +193,21 @@ default: Key inserted! Disconnecting and reconnecting using new SSH
 key...
 ==> default: Machine booted and ready!
 ==> default: Checking for guest additions in VM...
-default: The guest additions on this VM do not match the installed
-version of
-default: VirtualBox! In most cases this is fine, but in rare cases it
-can
-default: prevent things such as shared folders from working properly. If
-you see
-default: shared folder errors, please make sure the guest additions
-within the
-default: virtual machine match the version of VirtualBox you have
-installed on
+default: The guest additions on this VM do not match the installed version of
+default: VirtualBox! In most cases this is fine, but in rare cases it can
+default: prevent things such as shared folders from working properly. If you see
+default: shared folder errors, please make sure the guest additions within the
+default: virtual machine match the version of VirtualBox you have installed on
 default: your host and reload your VM.
 default:
 default: Guest Additions Version: 4.3.36
 default: VirtualBox Version: 5.0
 ==> default: Mounting shared folders...
-default: /vagrant => /home/k/TEST/my_vagrant
+default: /vagrant => /home/mtbsoft/my_vagrant
 $
 ```
 Nous avons maintenant une machine virtuelle exécutant Ubuntu. Nous
-avons créé un box «ubuntu/trusty64». Nous ne verrons rien
+avons créé un box «ubuntu/xenial64». Nous ne verrons rien
 cependant, puisque Vagrant exécute la machine virtuelle sans interface
 utilisateur. Pour vérifier si notre machine virtuelle est en cours
 d'exécution, nous pouvons SSH dans la machine comme démontré dans une
@@ -227,8 +215,8 @@ section ultérieure.
 
 ### Connection timeout
 
-En fait, j'ai eu des problèmes avec la commande **vagrant up** et j'ai
-obtenu ce qui suit:  
+Parfois, on a des problèmes avec la commande **vagrant up** et on
+obtient ce qui suit:  
 ```
 default: Warning: Connection timeout. Retrying...
 ```
@@ -281,22 +269,14 @@ pouvons SSH dans la machine:
 ```
 $ vagrant ssh
 
-Welcome to Ubuntu 14.04.5 LTS (GNU/Linux 3.13.0-108-generic x86_64)
-
+Welcome to Ubuntu 16.04.5 LTS (GNU/Linux 3.13.0-108-generic x86_64)
 * Documentation: https://help.ubuntu.com/
-
 System information disabled due to load higher than 1.0
-
 Get cloud support with Ubuntu Advantage Cloud Guest:
-
 http://www.ubuntu.com/business/services/cloud
-
 0 packages can be updated.
-
 0 updates are security updates.
-
-New release '16.04.1 LTS' available.
-
+New release '18.04.1 LTS' available.
 Run 'do-release-upgrade' to upgrade to it.
 
 vagrant@vagrant-ubuntu-xenial-64:~$
@@ -314,7 +294,7 @@ fichiers.    
 Avec une seule ligne de configuration et une seule commande dans notre
 terminal, nous avons mis en place une machine virtuelle entièrement
 fonctionnelle et accessible par SSH. La session SSH peut être terminée
-avec CTRL+D:
+avec CTRL+D ou:
 ```
 $ logout
 
