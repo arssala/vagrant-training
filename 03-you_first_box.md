@@ -22,11 +22,8 @@ Si vous voulez préparer un environnement développement à base Ubuntu, vous po
 Si vous préférez CentOS, Debian, Fedora ou FreeBSD, vous pouvez utiliser des boxes prises en charge par Chef Software, Inc.:
 
 • chef/centos-6.5          
-
 • chef/debian-7.4          
-
 • chef/fedora-20          
-
 • chef/freebsd-9.2          
 
 D'autres boxes peuvent être trouvées sur le site app.vagrantup.com.
@@ -34,24 +31,24 @@ D'autres boxes peuvent être trouvées sur le site app.vagrantup.com.
 Lorsque vous décidez que le base-box que vous souhaitez utiliser, aller à votre répertoire home et créer un nouveau dossier nommé  first-box-factory/ :
 
 
-
+```
 # Host
 $ cd
 $ mkdir first-box-factory
 $ cd first-box-factory
-
+```
 
 Initialisez un nouveau projet en utilisant Vagrant:
 
-
+```
 # Host
 $ vagrant init -m ubuntu/xenial64
-
+```
 Lancez la VM:
-
+```
 # Host
 $ vagrant up
-
+```
 
 ## Installation du logiciel nécessaire
 Lorsque le système d'exploitation invité est prêt, vous pouvez démarrer la session SSH et installer les logiciels nécessaires. Parce que Jekyll repose sur le Ruby et JavaScript, vous avez à installer les éléments suivants:
@@ -106,7 +103,7 @@ Vous pouvez fermer la session SSH. La VM est maintenant prête à être mise en 
 
 Vous avez maintenant le système d'exploitation invité en cours d'exécution, qui comprend tous les logiciels nécessaires. Il est temps de créer le box qui va entraîner  exactement la même machine dans chaque boot. Pour ce faire, exécutez cette commande:
 ```
-# Hôte
+# Host
 $ vagrant package --output first-box-jekyll.box
 ```
 
@@ -117,8 +114,8 @@ La commande `vagrant package` peut être utilisée pour une machine virtuelle en
 Lorsqu'elle est exécutée sans aucun paramètre, la commande crée un fichier nommé package.box :
 
 ```
-# Hôte
-$ paquet vagrant
+# host
+$ vagrant package
 ```
 
 Avec le paramètre `--output`, vous pouvez modifier le nom et l'emplacement du fichier.

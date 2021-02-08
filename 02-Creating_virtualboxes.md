@@ -404,7 +404,7 @@ Voici quelques commandes Vagrant:
 
 1.  **vagrant up**: démarre une machine virtuelle.
 
-2.  **provision vagrant**: force les approvisionneurs à exécuter à
+2.  **vagrant provision**: force les approvisionneurs à exécuter à
     nouveau une machine virtuelle. Utile pour mettre à jour la
     configuration des machines virtuelles existantes.
 
